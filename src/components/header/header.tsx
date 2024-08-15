@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
 
       <nav>
         <ul className="flex items-center justify-center gap-16">
-          <li className="py-[6px] px-4 bg-slate-900 rounded-3xl flex gap-5 font-merriweather text-slate-100 text-base font-bold">
+          <li className="py-[6px] px-4 bg-slate-900 rounded-3xl  gap-5 font-merriweather text-slate-100 text-base font-bold hidden sm:flex">
             <Link href={'/'} className="hover:text-slate-400 duration-300">
               ENTRAR
             </Link>
@@ -26,14 +27,59 @@ export default function Header() {
           </li>
 
           <li>
-            <button>
-              <Image
-                src={'../assets/icons/hamburger-menu-icon.svg'}
-                width={48}
-                height={48}
-                alt="hamburger menu"
-              />
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <button>
+                  <Image
+                    src={'../assets/icons/hamburger-menu-icon.svg'}
+                    width={48}
+                    height={48}
+                    alt="hamburger menu"
+                  />
+                </button>
+              </SheetTrigger>
+              <SheetContent>
+                <ul className="flex flex-col gap-4 text-base font-bold h-full justify-center text-slate-800">
+                  <li className="border-b-2 px-2 py-1 ">
+                    <Link className="hover:text-slate-600" href={'/'}>
+                      todas as noticias
+                    </Link>
+                  </li>
+                  <li className="border-b-2 px-2 py-1 ">
+                    <Link className="hover:text-slate-600" href={'/'}>
+                      categorias
+                    </Link>
+                  </li>
+                  <li className="border-b-2 px-2 py-1 ">
+                    <Link className="hover:text-slate-600" href={'/'}>
+                      noticias salvas
+                    </Link>
+                  </li>
+                  <li className="border-b-2 px-2 py-1 ">
+                    <Link className="hover:text-slate-600" href={'/'}>
+                      contato
+                    </Link>
+                  </li>
+
+                  <li className="border-b-2 px-2 py-1 text-xl flex sm:hidden">
+                    <Link
+                      className="text-sky-800 hover:text-sky-600"
+                      href={'/'}
+                    >
+                      entrar
+                    </Link>
+                  </li>
+                  <li className="border-b-2 px-2 py-1 text-xl flex sm:hidden">
+                    <Link
+                      className="text-sky-800 hover:text-sky-600"
+                      href={'/'}
+                    >
+                      cadastrar
+                    </Link>
+                  </li>
+                </ul>
+              </SheetContent>
+            </Sheet>
           </li>
         </ul>
       </nav>
