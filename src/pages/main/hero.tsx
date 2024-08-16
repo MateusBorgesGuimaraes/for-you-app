@@ -1,8 +1,17 @@
 import ButtonLink from '@/components/ButtonLink/button-link';
 import CardNewsHero from '@/components/cardNewsHero/card-news-hero';
+import formatDate from '@/functions/fomatDate';
+import type { News } from '@/tipos';
 import Image from 'next/image';
 
-export default function Hero() {
+type HeroProps = {
+  news: News[];
+};
+
+export default function Hero({ news }: HeroProps) {
+  const firstTwoNews = news.slice(0, 2);
+  const lastTreeNews = news.slice(-3);
+
   return (
     <section className=" h-[calc(100vh-80px)] flex items-center justify-center gap-[.375rem]">
       <div
@@ -67,35 +76,33 @@ export default function Hero() {
       </div>
 
       <div className="hidden md:flex flex-col h-full gap-[.375rem] justify-center">
-        <CardNewsHero>
-          <CardNewsHero.Header>
-            <CardNewsHero.Header.Author>João Araujo</CardNewsHero.Header.Author>
-            <CardNewsHero.Header.Date>12/05/2024</CardNewsHero.Header.Date>
-          </CardNewsHero.Header>
-          <CardNewsHero.Title>
-            Como a arte nos ajuda no combate a depressão
-          </CardNewsHero.Title>
-          <CardNewsHero.Footer>
-            <CardNewsHero.Footer.Content type="comment" value={12} />
-            <CardNewsHero.Footer.Content type="like" value={12} />
-            <CardNewsHero.Footer.Content type="views" value={12} />
-          </CardNewsHero.Footer>
-        </CardNewsHero>
-
-        <CardNewsHero>
-          <CardNewsHero.Header>
-            <CardNewsHero.Header.Author>João Araujo</CardNewsHero.Header.Author>
-            <CardNewsHero.Header.Date>12/05/2024</CardNewsHero.Header.Date>
-          </CardNewsHero.Header>
-          <CardNewsHero.Title>
-            Como a arte nos ajuda no combate a depressão
-          </CardNewsHero.Title>
-          <CardNewsHero.Footer>
-            <CardNewsHero.Footer.Content type="comment" value={12} />
-            <CardNewsHero.Footer.Content type="like" value={12} />
-            <CardNewsHero.Footer.Content type="views" value={12} />
-          </CardNewsHero.Footer>
-        </CardNewsHero>
+        {firstTwoNews.map((news) => (
+          <CardNewsHero key={news.id} url={news.image}>
+            <CardNewsHero.Header>
+              <CardNewsHero.Header.Author>
+                {news.author}
+              </CardNewsHero.Header.Author>
+              <CardNewsHero.Header.Date>
+                {formatDate(String(news.createdAt))}
+              </CardNewsHero.Header.Date>
+            </CardNewsHero.Header>
+            <CardNewsHero.Title>{news.title}</CardNewsHero.Title>
+            <CardNewsHero.Footer>
+              <CardNewsHero.Footer.Content
+                type="comment"
+                value={news.comments?.length || 0}
+              />
+              <CardNewsHero.Footer.Content
+                type="like"
+                value={news.likes?.length || 0}
+              />
+              <CardNewsHero.Footer.Content
+                type="views"
+                value={news.views || 0}
+              />
+            </CardNewsHero.Footer>
+          </CardNewsHero>
+        ))}
 
         <div className="flex gap-[.375rem]">
           <div className="bg-slate-900 p-3 rounded-2xl flex flex-col justify-between w-full">
@@ -169,44 +176,26 @@ export default function Hero() {
             alt="trending icon"
           />
         </div>
-        <CardNewsHero>
-          <CardNewsHero.Header>
-            <CardNewsHero.Header.Author>João Araujo</CardNewsHero.Header.Author>
-          </CardNewsHero.Header>
-          <CardNewsHero.Title small>
-            Como a arte nos ajuda no combate a depressão
-          </CardNewsHero.Title>
-          <CardNewsHero.Footer>
-            <CardNewsHero.Footer.Content type="like" value={12} />
-            <CardNewsHero.Footer.Content type="views" value={12} />
-          </CardNewsHero.Footer>
-        </CardNewsHero>
-
-        <CardNewsHero>
-          <CardNewsHero.Header>
-            <CardNewsHero.Header.Author>João Araujo</CardNewsHero.Header.Author>
-          </CardNewsHero.Header>
-          <CardNewsHero.Title small>
-            Como a arte nos ajuda no combate a depressão
-          </CardNewsHero.Title>
-          <CardNewsHero.Footer>
-            <CardNewsHero.Footer.Content type="like" value={12} />
-            <CardNewsHero.Footer.Content type="views" value={12} />
-          </CardNewsHero.Footer>
-        </CardNewsHero>
-
-        <CardNewsHero>
-          <CardNewsHero.Header>
-            <CardNewsHero.Header.Author>João Araujo</CardNewsHero.Header.Author>
-          </CardNewsHero.Header>
-          <CardNewsHero.Title small>
-            Como a arte nos ajuda no combate a depressão
-          </CardNewsHero.Title>
-          <CardNewsHero.Footer>
-            <CardNewsHero.Footer.Content type="like" value={12} />
-            <CardNewsHero.Footer.Content type="views" value={12} />
-          </CardNewsHero.Footer>
-        </CardNewsHero>
+        {lastTreeNews.map((news) => (
+          <CardNewsHero key={news.id} url={news.image}>
+            <CardNewsHero.Header>
+              <CardNewsHero.Header.Author>
+                {news.author}
+              </CardNewsHero.Header.Author>
+            </CardNewsHero.Header>
+            <CardNewsHero.Title small>{news.title}</CardNewsHero.Title>
+            <CardNewsHero.Footer>
+              <CardNewsHero.Footer.Content
+                type="like"
+                value={news.likes?.length || 0}
+              />
+              <CardNewsHero.Footer.Content
+                type="views"
+                value={news.views || 0}
+              />
+            </CardNewsHero.Footer>
+          </CardNewsHero>
+        ))}
       </div>
     </section>
   );
