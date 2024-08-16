@@ -1,14 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from '../ui/sheet';
 
 export default function Header() {
   return (
-    <header className="container py-5 flex items-center justify-between">
+    <header className="container pt-5 flex items-center justify-between">
       <div>
         <Image
           className="select-none"
-          src={'../assets/icons/dark-logo-icon.svg'}
+          src={'/assets/icons/dark-logo-icon.svg'}
           width={161}
           height={42}
           alt="logo do site"
@@ -39,6 +45,10 @@ export default function Header() {
                 </button>
               </SheetTrigger>
               <SheetContent>
+                <SheetTitle hidden>Hamburger menu</SheetTitle>
+                <SheetDescription hidden>
+                  Hamburger menu com mais rotas para acessas.
+                </SheetDescription>
                 <ul className="flex flex-col gap-4 text-base font-bold h-full justify-center text-slate-800">
                   <li className="border-b-2 px-2 py-1 ">
                     <Link className="hover:text-slate-600" href={'/'}>
