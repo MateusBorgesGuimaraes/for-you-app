@@ -1,4 +1,4 @@
-import ButtonLink from '@/components/ButtonLink/button-link';
+import ButtonLink from '@/components/buttonLink/button-link';
 import CardNewsHero from '@/components/cardNewsHero/card-news-hero';
 import formatDate from '@/functions/fomatDate';
 import type { News } from '@/tipos';

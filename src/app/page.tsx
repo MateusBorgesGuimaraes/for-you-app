@@ -1,5 +1,6 @@
 import getCustoms from '@/actions/get-customs';
 import Hero from '@/pages/main/hero';
+import RecentsNews from '@/pages/main/recents-news';
 
 export default async function Home() {
   const { data, error, ok } = await getCustoms();
@@ -12,8 +13,9 @@ export default async function Home() {
     lastExclusiveNews,
   } = data;
   return (
-    <div className="container">
+    <section className="container ">
       <Hero news={limitedRelevantNews} />
-    </div>
+      <RecentsNews news={mostRecentNews} />
+    </section>
   );
 }
