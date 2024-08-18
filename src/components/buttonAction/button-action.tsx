@@ -1,14 +1,17 @@
 type ButtonActionProps = {
   children: React.ReactNode;
   borderStyle?: boolean;
+  state: boolean;
 };
 
 export default function ButtonAction({
   children,
   borderStyle,
+  state,
 }: ButtonActionProps) {
   return (
     <button
+      disabled={state}
       className={` ${
         borderStyle
           ? 'text-2xl font-bold text-slate-900 bg-none border-2 border-slate-900 py-3 px-5 rounded-lg flex items-center justify-center'

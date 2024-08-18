@@ -3,6 +3,7 @@ import { Merriweather } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/header';
 import Footer from '@/components/footer/footer';
+import { Toaster } from '@/components/ui/toaster';
 
 const merriweather = Merriweather({
   weight: ['400', '700'],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

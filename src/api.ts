@@ -5,3 +5,15 @@ export function GET_CUSTOMS() {
     url: API_URL + 'news/custom',
   };
 }
+
+export function GET_TOKEN() {
+  return {
+    url: API_URL + 'login',
+  };
+}
+
+export function GET_USER() {
+  return {
+    url: API_URL + 'login/user',
+  };
+}

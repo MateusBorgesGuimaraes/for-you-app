@@ -31,8 +31,8 @@ export default function LoginLayout({
   ];
 
   return (
-    <section className="container grid grid-cols-1 mb-12 gap-5 md:grid-cols-2 px-8 md:py-0">
-      <div className="hidden md:block">
+    <section className="container grid grid-cols-1 mb-12 gap-5 md:grid-cols-2 px-8 md:py-0 min-h-[calc(100vh-80px)]">
+      <div className="hidden md:flex items-center justify-center">
         <Carousel className="w-full h-full z-10">
           <div className="h-[[calc(100vh-80px)]] max-h-[580px] overflow-hidden rounded-2xl">
             <CarouselContent className="h-full">
