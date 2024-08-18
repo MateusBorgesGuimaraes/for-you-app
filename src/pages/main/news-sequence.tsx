@@ -6,19 +6,23 @@ import Link from 'next/link';
 
 type RecentsNewsProps = {
   news: News[];
+  title: string;
 };
 
-export default function RecentsNews({ news }: RecentsNewsProps) {
-  if (!news) return <></>;
+export default function NewsSequence({ news, title }: RecentsNewsProps) {
+  if (!news) return <div>Erro ao carregar noticias</div>;
   const firstFour = news?.slice(0, 4);
   return (
     <div className="mt-12">
-      <TitleDec>Noticias Recentes</TitleDec>
+      <TitleDec>{title}</TitleDec>
       <div className="mt-5 gap-5  grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
         {firstFour.map((item) => (
           <div key={item.id} className="flex  justify-center">
             <CardNewsGeneral>
-              <CardNewsGeneral.Image image={item.image} />
+              <CardNewsGeneral.Image
+                image={item.image}
+                description={item.description}
+              />
               <CardNewsGeneral.Header
                 author={item.author}
                 date={formatDate(String(item.createdAt))}

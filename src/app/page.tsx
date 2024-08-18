@@ -1,6 +1,8 @@
 import getCustoms from '@/actions/get-customs';
 import Hero from '@/pages/main/hero';
-import RecentsNews from '@/pages/main/recents-news';
+import NewsSequence from '@/pages/main/news-sequence';
+import NewsTemplateEmpty from '@/pages/main/news-template-empty';
+import NewsTeplateExclusive from '@/pages/main/news-template-exclusive';
 
 export default async function Home() {
   const { data, error, ok } = await getCustoms();
@@ -12,10 +14,17 @@ export default async function Home() {
     randomModaNews,
     lastExclusiveNews,
   } = data;
+  const newsEmpty = limitedRelevantNews[limitedRelevantNews.length - 1];
   return (
-    <section className="container ">
+    <section className="container">
       <Hero news={limitedRelevantNews} />
-      <RecentsNews news={mostRecentNews} />
+      <NewsSequence news={mostRecentNews} title={'Últimas notícias'} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 mt-12 gap-8">
+        <NewsTemplateEmpty news={newsEmpty} />
+        <NewsTeplateExclusive news={lastExclusiveNews} />
+      </div>
+      <NewsSequence news={randomEsporteNews} title={'Esportes'} />
+      <NewsSequence news={randomModaNews} title={'Moda'} />
     </section>
   );
 }

@@ -8,6 +8,9 @@ export default async function getCustoms() {
     const { url } = GET_CUSTOMS();
     const response = await fetch(url, {
       method: 'GET',
+      next: {
+        revalidate: 60,
+      },
     });
     if (!response.ok) throw new Error('erro ao carregar noticias');
     const data = (await response.json()) as CustomsHome;
