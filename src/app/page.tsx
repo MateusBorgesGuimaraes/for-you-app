@@ -23,8 +23,10 @@ export default async function Home() {
         <NewsTemplateEmpty news={newsEmpty} />
         <NewsTeplateExclusive news={lastExclusiveNews} />
       </div>
-      <NewsSequence news={randomEsporteNews} title={'Esportes'} />
-      <NewsSequence news={randomModaNews} title={'Moda'} />
+      <div className="mb-12">
+        <NewsSequence news={randomEsporteNews} title={'Esportes'} />
+        <NewsSequence news={randomModaNews} title={'Moda'} />
+      </div>
     </section>
   );
 }

@@ -24,10 +24,13 @@ export default function Header() {
       <nav>
         <ul className="flex items-center justify-center gap-16">
           <li className="py-[6px] px-4 bg-slate-900 rounded-3xl  gap-5 font-merriweather text-slate-100 text-base font-bold hidden sm:flex">
-            <Link href={'/'} className="hover:text-slate-400 duration-300">
+            <Link href={'/login'} className="hover:text-slate-400 duration-300">
               ENTRAR
             </Link>
-            <Link href={'/'} className="hover:text-slate-400 duration-300">
+            <Link
+              href={'/login/register'}
+              className="hover:text-slate-400 duration-300"
+            >
               CADASTRAR
             </Link>
           </li>
