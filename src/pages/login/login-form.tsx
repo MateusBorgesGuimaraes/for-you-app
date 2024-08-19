@@ -7,18 +7,23 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginUserSchema, LoginUserType } from '@/zodSchemas/login';
 import ErrorComponent from '@/components/errorComponent/error-component';
-import getToken from '@/actions/get-token';
-import getUser from '@/actions/get-user';
+import postToken from '@/actions/post-token';
+
 import { useToast } from '@/components/ui/use-toast';
+import { useUserStore } from '../../store/user';
+import getUser from '@/actions/get-user';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const { setUser } = useUserStore();
   const { toast } = useToast();
+  const router = useRouter();
   const methods = useForm<LoginUserType>({
     resolver: zodResolver(loginUserSchema),
   });
 
   async function loginUser(data: any) {
-    const response = await getToken(data);
+    const response = await postToken(data);
 
     if (!response.ok) {
       toast({
@@ -29,6 +34,7 @@ export default function LoginForm() {
       return;
     }
     const userResponse = await getUser();
+
     if (!userResponse.ok) {
       toast({
         variant: 'destructive',
@@ -37,7 +43,9 @@ export default function LoginForm() {
       });
       return;
     }
-    console.log(userResponse.data);
+    setUser(userResponse.data);
+
+    router.push('/');
   }
 
   return (

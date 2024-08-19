@@ -1,10 +1,10 @@
 'use server';
 
-import { GET_TOKEN } from '@/api';
+import { POST_TOKEN } from '@/api';
 import { LoginUserType } from '@/zodSchemas/login';
 import { cookies } from 'next/headers';
 
-export default async function getToken({ username, password }: LoginUserType) {
+export default async function postToken({ username, password }: LoginUserType) {
   try {
     if (!username || !password) {
       return {
@@ -14,7 +14,7 @@ export default async function getToken({ username, password }: LoginUserType) {
       };
     }
 
-    const { url } = GET_TOKEN();
+    const { url } = POST_TOKEN();
 
     const response = await fetch(url, {
       method: 'POST',

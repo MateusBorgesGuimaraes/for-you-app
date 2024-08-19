@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -7,8 +9,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet';
+import { useUserStore } from '@/store/user';
+import logout from '@/actions/user-logout';
 
 export default function Header() {
+  const { user, clearUser } = useUserStore();
+
+  async function handleLogout() {
+    await logout();
+    clearUser();
+  }
+
   return (
     <header className="container pt-5 flex items-center justify-between">
       <div>
@@ -23,17 +34,32 @@ export default function Header() {
 
       <nav>
         <ul className="flex items-center justify-center gap-16">
-          <li className="py-[6px] px-4 bg-slate-900 rounded-3xl  gap-5 font-merriweather text-slate-100 text-base font-bold hidden sm:flex">
-            <Link href={'/login'} className="hover:text-slate-400 duration-300">
-              ENTRAR
-            </Link>
-            <Link
-              href={'/login/register'}
-              className="hover:text-slate-400 duration-300"
-            >
-              CADASTRAR
-            </Link>
-          </li>
+          {user ? (
+            <li className="py-[6px] px-4 bg-slate-900 rounded-3xl  gap-5 font-merriweather text-slate-100 text-base font-bold hidden sm:flex">
+              <p>{user.username}</p>
+              <button
+                className="hover:text-slate-400 duration-300"
+                onClick={() => handleLogout()}
+              >
+                LOGOUT
+              </button>
+            </li>
+          ) : (
+            <li className="py-[6px] px-4 bg-slate-900 rounded-3xl  gap-5 font-merriweather text-slate-100 text-base font-bold hidden sm:flex">
+              <Link
+                href={'/login'}
+                className="hover:text-slate-400 duration-300"
+              >
+                ENTRAR
+              </Link>
+              <Link
+                href={'/login/register'}
+                className="hover:text-slate-400 duration-300"
+              >
+                CADASTRAR
+              </Link>
+            </li>
+          )}
 
           <li>
             <Sheet>

@@ -6,7 +6,7 @@ export function GET_CUSTOMS() {
   };
 }
 
-export function GET_TOKEN() {
+export function POST_TOKEN() {
   return {
     url: API_URL + 'login',
   };
@@ -15,5 +15,11 @@ export function GET_TOKEN() {
 export function GET_USER() {
   return {
     url: API_URL + 'login/user',
+  };
+}
+
+export function POST_USER() {
+  return {
+    url: API_URL + 'login/register',
   };
 }

@@ -9,7 +9,7 @@ export default async function getUser() {
     if (!token) {
       return {
         data: null,
-        error: 'Login expirou, faca login novamente',
+        error: 'Logue na sua conta',
         ok: false,
       };
     }

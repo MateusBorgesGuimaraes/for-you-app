@@ -1,8 +1,13 @@
+'use client';
+
 import ButtonLink from '@/components/buttonLink/button-link';
 import CardNewsHero from '@/components/cardNewsHero/card-news-hero';
 import formatDate from '@/functions/fomatDate';
 import type { News } from '@/tipos';
 import Image from 'next/image';
+import React from 'react';
+import getUser from '@/actions/get-user';
+import { useUserStore } from '@/store/user';
 
 type HeroProps = {
   news: News[];
@@ -11,6 +16,16 @@ type HeroProps = {
 export default function Hero({ news }: HeroProps) {
   const firstTwoNews = news.slice(0, 2);
   const lastTreeNews = news.slice(-3);
+  const { user, setUser } = useUserStore();
+
+  React.useEffect(() => {
+    async function loadUser() {
+      if (user) return;
+      const { data } = await getUser();
+      if (data && !user) setUser(data);
+    }
+    loadUser();
+  }, [setUser, user]);
 
   return (
     <section className=" h-[calc(100vh-80px)] flex items-center justify-center gap-[.375rem]">
