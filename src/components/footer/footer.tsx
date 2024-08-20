@@ -17,8 +17,10 @@ export default function Footer() {
         <div className="flex justify-between lg:flex-nowrap flex-wrap sm:gap-0 gap-4">
           <div className="flex flex-col gap-8">
             <div className="flex gap-4 flex-wrap">
-              <ButtonLinkLight href="/">REGISTRAR</ButtonLinkLight>
-              <ButtonLinkLight href="/" borderStyle>
+              <ButtonLinkLight href="/login/register">
+                REGISTRAR
+              </ButtonLinkLight>
+              <ButtonLinkLight href="/login" borderStyle>
                 LOGIN
               </ButtonLinkLight>
             </div>

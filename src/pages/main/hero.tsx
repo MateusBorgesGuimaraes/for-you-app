@@ -92,7 +92,7 @@ export default function Hero({ news }: HeroProps) {
 
       <div className="hidden md:flex flex-col h-full gap-[.375rem] justify-center">
         {firstTwoNews.map((news) => (
-          <CardNewsHero key={news.id} url={news.image}>
+          <CardNewsHero key={news.id} url={news.image} newsId={news.id}>
             <CardNewsHero.Header>
               <CardNewsHero.Header.Author>
                 {news.author}
@@ -192,7 +192,7 @@ export default function Hero({ news }: HeroProps) {
           />
         </div>
         {lastTreeNews.map((news) => (
-          <CardNewsHero key={news.id} url={news.image}>
+          <CardNewsHero key={news.id} url={news.image} newsId={news.id}>
             <CardNewsHero.Header>
               <CardNewsHero.Header.Author>
                 {news.author}

@@ -54,7 +54,9 @@ export default function LoginForm() {
         onSubmit={methods.handleSubmit(loginUser)}
         className="w-full max-w-[480px] space-y-2"
       >
-        <h1 className="text-6xl font-bold text-slate-900 mb-6">LOGAR</h1>
+        <h1 className="supersmall:text-6xl font-bold text-slate-900 mb-6 text-4xl">
+          LOGAR
+        </h1>
         <InputForm label="nome" type="nome" name="username" />
         {methods.formState.errors.username && (
           <ErrorComponent message={methods.formState.errors.username.message} />

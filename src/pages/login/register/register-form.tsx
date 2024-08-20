@@ -52,7 +52,9 @@ export default function RegisterForm() {
         onSubmit={methods.handleSubmit(registerUser)}
         className="w-full max-w-[480px] space-y-2"
       >
-        <h1 className="text-6xl font-bold text-slate-900 mb-6">REGISTRAR</h1>
+        <h1 className="supersmall:text-6xl font-bold text-slate-900 mb-6 text-4xl">
+          REGISTRAR
+        </h1>
         <InputForm label="nome" type="nome" name="username" />
         {methods.formState.errors.username && (
           <ErrorComponent message={methods.formState.errors.username.message} />

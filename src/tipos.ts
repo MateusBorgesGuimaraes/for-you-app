@@ -1,3 +1,14 @@
+export type Categories =
+  | 'cultura'
+  | 'moda'
+  | 'esporte'
+  | 'arte'
+  | 'politica'
+  | 'natureza'
+  | 'saude'
+  | 'ciencia'
+  | 'entretenimento';
+
 export type Comment = {
   id?: string;
   content: string;
@@ -14,16 +25,7 @@ export type News = {
   image: string;
   exclusive?: boolean;
   id: string;
-  category:
-    | 'cultura'
-    | 'moda'
-    | 'esporte'
-    | 'arte'
-    | 'politica'
-    | 'natureza'
-    | 'saude'
-    | 'ciencia'
-    | 'entretenimento';
+  category: Categories;
   views?: number;
   likes?: string[];
   comments?: Comment[];

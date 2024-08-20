@@ -23,3 +23,15 @@ export function POST_USER() {
     url: API_URL + 'login/register',
   };
 }
+
+export function GET_NEWS(id: string) {
+  return {
+    url: API_URL + 'news/' + id,
+  };
+}
+
+export function POST_COMMENT() {
+  return {
+    url: API_URL + 'comments',
+  };
+}

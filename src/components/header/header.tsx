@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <header className="container pt-5 flex items-center justify-between">
-      <div>
+      <Link href={'/'}>
         <Image
           className="select-none"
           src={'/assets/icons/dark-logo-icon.svg'}
@@ -30,7 +30,7 @@ export default function Header() {
           height={42}
           alt="logo do site"
         />
-      </div>
+      </Link>
 
       <nav>
         <ul className="flex items-center justify-center gap-16">
@@ -100,22 +100,36 @@ export default function Header() {
                     </Link>
                   </li>
 
-                  <li className="border-b-2 px-2 py-1 text-xl flex sm:hidden">
-                    <Link
-                      className="text-sky-800 hover:text-sky-600"
-                      href={'/'}
-                    >
-                      entrar
-                    </Link>
-                  </li>
-                  <li className="border-b-2 px-2 py-1 text-xl flex sm:hidden">
-                    <Link
-                      className="text-sky-800 hover:text-sky-600"
-                      href={'/'}
-                    >
-                      cadastrar
-                    </Link>
-                  </li>
+                  {user ? (
+                    <li className="border-b-2 px-2 py-1 ">
+                      <Link
+                        className="text-sky-800 hover:text-sky-600"
+                        href={'/'}
+                        onClick={() => handleLogout()}
+                      >
+                        logout
+                      </Link>
+                    </li>
+                  ) : (
+                    <>
+                      <li className="border-b-2 px-2 py-1 text-xl flex sm:hidden">
+                        <Link
+                          className="text-sky-800 hover:text-sky-600"
+                          href={'/'}
+                        >
+                          entrar
+                        </Link>
+                      </li>
+                      <li className="border-b-2 px-2 py-1 text-xl flex sm:hidden">
+                        <Link
+                          className="text-sky-800 hover:text-sky-600"
+                          href={'/'}
+                        >
+                          cadastrar
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </SheetContent>
             </Sheet>
