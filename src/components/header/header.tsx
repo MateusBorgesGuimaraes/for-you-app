@@ -11,14 +11,25 @@ import {
 } from '../ui/sheet';
 import { useUserStore } from '@/store/user';
 import logout from '@/actions/user-logout';
+import React from 'react';
+import getUser from '@/actions/get-user';
 
 export default function Header() {
-  const { user, clearUser } = useUserStore();
+  const { user, clearUser, setUser } = useUserStore();
 
   async function handleLogout() {
     await logout();
     clearUser();
   }
+
+  React.useEffect(() => {
+    async function loadUser() {
+      if (user) return;
+      const { data } = await getUser();
+      if (data && !user) setUser(data);
+    }
+    loadUser();
+  }, [setUser, user]);
 
   return (
     <header className="container pt-5 flex items-center justify-between">

@@ -3,6 +3,7 @@
 import postComment from '@/actions/post-comment';
 import React from 'react';
 import { useToast } from '../ui/use-toast';
+import { CommentOnPost } from '@/tipos';
 
 type TextAreaFormProps = {
   placeholder?: string;
@@ -29,16 +30,13 @@ export default function TextAreaForm({
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    console.log(content);
     const data = {
       content,
       news: newsId,
     };
 
-    console.log(data);
-
     const response = await postComment(data);
-
+    // console.log('Esse é os dados retornados', response.data);
     if (!response.ok) {
       toast({
         variant: 'destructive',
@@ -46,8 +44,12 @@ export default function TextAreaForm({
         description: response.error,
       });
       return;
+    } else {
+      toast({
+        title: 'Sucesso !!! ',
+        description: 'Comentarios  postado com sucesso.',
+      });
     }
-    console.log(response);
 
     setContent('');
     setIsFocus(false);
@@ -67,10 +69,10 @@ export default function TextAreaForm({
         onClick={handleTextAreaFocus}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full h-20 p-2 bg-slate-100 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-600 focus:border-transparent duration-300"
+        className="w-full h-20 p-2 bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-600 focus:border-transparent duration-300"
       />
 
-      <button className="px-4 py-2 bg-slate-900 text-white rounded-lg smallest:text-xl self-end hover:bg-slate-700 duration-300 text-base">
+      <button className="px-4 py-2 bg-sky-900 text-white rounded-lg smallest:text-xl self-end hover:bg-sky-700 duration-300 text-base">
         enviar
       </button>
     </form>

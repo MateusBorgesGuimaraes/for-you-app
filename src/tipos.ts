@@ -28,7 +28,7 @@ export type News = {
   category: Categories;
   views?: number;
   likes?: string[];
-  comments?: Comment[];
+  comments: CommentOnPost[];
   user: User;
   createdAt?: Date;
   updatedAt?: Date;
@@ -51,4 +51,18 @@ export type CustomsHome = {
   lastExclusiveNews: News;
   randomEsporteNews: News[];
   randomModaNews: News[];
+};
+
+export type CommentOnPost = {
+  content: string;
+  likes: string[];
+  user: UserResume;
+  id: string;
+  createdAt: Date;
+};
+
+export type UserResume = {
+  id: string;
+  username: string;
+  email: string;
 };

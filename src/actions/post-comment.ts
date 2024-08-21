@@ -43,7 +43,7 @@ export default async function postComment({
     if (!response.ok) throw new Error('erro postar comentario');
     const data = await response.json();
 
-    return { data: 'sucesso', ok: true, error: '' };
+    return { data: data, ok: true, error: '' };
   } catch (err) {
     if (err instanceof Error) {
       return { data: null, error: err.message, ok: false };
