@@ -4,7 +4,7 @@ import CommentComponent from '@/components/comment/comment-component';
 import TextAreaForm from '@/components/textAreaForm/text-area-form';
 import formatDate from '@/functions/fomatDate';
 import { useUserStore } from '@/store/user';
-import { Comment, CommentOnPost } from '@/tipos';
+import { CommentOnPost } from '@/tipos';
 
 type NewsFooterProps = {
   comments: CommentOnPost[] | undefined;
@@ -29,7 +29,7 @@ export default function NewsFooter({ comments, newsId }: NewsFooterProps) {
                 date={formatDate(String(comment.createdAt))}
               />
               {user?.id === comment.user.id && (
-                <CommentComponent.Header.Delete />
+                <CommentComponent.Header.Delete id={comment.id} />
               )}
             </CommentComponent.Header>
             <CommentComponent.Content>

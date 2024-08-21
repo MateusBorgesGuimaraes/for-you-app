@@ -4,6 +4,8 @@ import postComment from '@/actions/post-comment';
 import React from 'react';
 import { useToast } from '../ui/use-toast';
 import { CommentOnPost } from '@/tipos';
+import { useNewsStore } from '@/store/news';
+import { useUserStore } from '@/store/user';
 
 type TextAreaFormProps = {
   placeholder?: string;
@@ -18,6 +20,8 @@ export default function TextAreaForm({
   const [content, setContent] = React.useState('');
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
+  const { news, setNews } = useNewsStore();
+  const { user } = useUserStore();
 
   function handleTextAreaFocus() {
     setIsFocus(true);
@@ -30,13 +34,14 @@ export default function TextAreaForm({
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
+    if (!user) return;
+
     const data = {
       content,
       news: newsId,
     };
 
     const response = await postComment(data);
-    // console.log('Esse é os dados retornados', response.data);
     if (!response.ok) {
       toast({
         variant: 'destructive',
@@ -48,6 +53,24 @@ export default function TextAreaForm({
       toast({
         title: 'Sucesso !!! ',
         description: 'Comentarios  postado com sucesso.',
+      });
+    }
+
+    const newComment = response.data as CommentOnPost;
+    if (news && news.id === newsId) {
+      setNews({
+        ...news,
+        comments: [
+          ...news.comments,
+          {
+            ...newComment,
+            user: {
+              id: user?.id || '',
+              username: user?.username || 'Anonymous',
+              email: user?.email || '',
+            },
+          },
+        ],
       });
     }
 

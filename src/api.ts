@@ -35,3 +35,9 @@ export function POST_COMMENT() {
     url: API_URL + 'comments',
   };
 }
+
+export function DELETE_COMMENT(id: string) {
+  return {
+    url: API_URL + 'comments/' + id,
+  };
+}
