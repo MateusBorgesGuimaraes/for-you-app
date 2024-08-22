@@ -45,11 +45,12 @@ export default function NewsPageFull({ id }: NewsPageFullProps) {
           image={image}
           title={title}
           date={String(createdAt)}
-          likes={likes?.length || 0}
+          likes={likes}
           comments={comments?.length || 0}
           views={views || 0}
           category={category}
           author={author}
+          id={id}
         />
       </div>
       <div className="lg:max-w-[61.25rem] self-center">

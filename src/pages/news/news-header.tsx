@@ -1,16 +1,24 @@
+'use client';
+
+import putLikes from '@/actions/put-likes';
+import { useToast } from '@/components/ui/use-toast';
 import formatDate from '@/functions/fomatDate';
+import { useNewsStore } from '@/store/news';
+import { useUserStore } from '@/store/user';
 import { Categories } from '@/tipos';
 import Image from 'next/image';
+import React from 'react';
 
 type NewsHeaderProps = {
   image: string;
   title: string;
   author: string;
-  likes: number;
+  likes: string[] | undefined;
   views: number;
   date: string;
   comments: number;
   category: Categories;
+  id: string;
 };
 
 export default function NewsHeader({
@@ -22,7 +30,42 @@ export default function NewsHeader({
   date,
   comments,
   category,
+  id,
 }: NewsHeaderProps) {
+  const { user } = useUserStore();
+  const { news, setNews } = useNewsStore();
+  const { toast } = useToast();
+
+  async function changeLikes() {
+    const response = await putLikes(id);
+    if (!response.ok) {
+      console.log(response.error);
+      toast({
+        variant: 'destructive',
+        title: 'oh não! Erro ao curtir noticia',
+        description: response.error,
+      });
+      return;
+    }
+
+    if (news && response.ok) {
+      const userAlreadyLiked = likes?.includes(user?.id ?? '');
+      const updatedLikes = userAlreadyLiked
+        ? likes?.filter((userId) => userId !== user?.id)
+        : [...(likes ?? []), user?.id ?? ''];
+
+      setNews({
+        ...news,
+        likes: updatedLikes,
+      });
+    }
+  }
+
+  let contains = false;
+  if (user?.id && likes) {
+    contains = likes?.includes(user?.id);
+  }
+
   return (
     <div className="flex flex-col gap-4 sm:flex-row lg:items-center">
       <div className="justify-self-center self-center w-full h-full sm:min-h-full lg:max-h-[400px] lg:min-h-[400px] max-w-[580px] rounded-lg overflow-hidden">
@@ -58,15 +101,32 @@ export default function NewsHeader({
             />
           </p>
 
-          <p className="flex items-center gap-2 font-bold text-xl text-slate-600">
-            {likes}{' '}
-            <Image
-              src={'/assets/icons/color-like-icon.svg'}
-              width={24}
-              height={24}
-              alt={'Icone de likes'}
-            />
-          </p>
+          <button
+            onClick={changeLikes}
+            className="flex items-center gap-2 font-bold text-xl text-slate-600"
+          >
+            {contains ? (
+              <>
+                {likes?.length}
+                <Image
+                  src={'/assets/icons/color-like-icon-full.svg'}
+                  width={24}
+                  height={24}
+                  alt={'Icone de likes'}
+                />
+              </>
+            ) : (
+              <>
+                {likes?.length}
+                <Image
+                  src={'/assets/icons/color-like-icon.svg'}
+                  width={24}
+                  height={24}
+                  alt={'Icone de likes'}
+                />
+              </>
+            )}
+          </button>
 
           <p className="flex items-center gap-2 font-bold text-xl text-slate-600">
             {views}{' '}

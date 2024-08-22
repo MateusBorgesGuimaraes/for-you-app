@@ -1,4 +1,5 @@
 import getNews from '@/actions/get-news';
+import putViews from '@/actions/put-views';
 import NewsFooter from '@/pages/news/news-footer';
 import NewsHeader from '@/pages/news/news-header';
 import NewsPageFull from '@/pages/news/news-page-full';
@@ -17,5 +18,7 @@ export type NewsIdParams = {
 };
 
 export default async function NewsPage({ params }: NewsIdParams) {
+  await putViews(params.id);
+
   return <NewsPageFull id={params.id} />;
 }

@@ -41,3 +41,15 @@ export function DELETE_COMMENT(id: string) {
     url: API_URL + 'comments/' + id,
   };
 }
+
+export function PUT_VIEWS(id: string) {
+  return {
+    url: API_URL + 'news/' + id + '/view',
+  };
+}
+
+export function PUT_LIKES(id: string) {
+  return {
+    url: API_URL + 'news/' + id + '/like',
+  };
+}
