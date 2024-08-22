@@ -53,3 +53,27 @@ export function PUT_LIKES(id: string) {
     url: API_URL + 'news/' + id + '/like',
   };
 }
+
+export function PUT_COMMENT_LIKES(id: string) {
+  return {
+    url: API_URL + 'comments/' + id + '/like',
+  };
+}
+
+export function PUT_SAVED_NEWS(id: string) {
+  return {
+    url: API_URL + 'user/' + id + '/save',
+  };
+}
+
+export function GET_NEWS_BY_CATEGORY(category: string) {
+  return {
+    url: API_URL + 'news/category/' + category,
+  };
+}
+
+export function GET_ALL_NEWS() {
+  return {
+    url: API_URL + 'news/category',
+  };
+}

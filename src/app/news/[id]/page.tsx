@@ -1,9 +1,5 @@
-import getNews from '@/actions/get-news';
 import putViews from '@/actions/put-views';
-import NewsFooter from '@/pages/news/news-footer';
-import NewsHeader from '@/pages/news/news-header';
 import NewsPageFull from '@/pages/news/news-page-full';
-import NewsText from '@/pages/news/news-text';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

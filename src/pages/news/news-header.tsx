@@ -1,6 +1,7 @@
 'use client';
 
 import putLikes from '@/actions/put-likes';
+import putSavedNews from '@/actions/put-saved-news';
 import { useToast } from '@/components/ui/use-toast';
 import formatDate from '@/functions/fomatDate';
 import { useNewsStore } from '@/store/news';
@@ -35,6 +36,7 @@ export default function NewsHeader({
   const { user } = useUserStore();
   const { news, setNews } = useNewsStore();
   const { toast } = useToast();
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
   async function changeLikes() {
     const response = await putLikes(id);
@@ -65,6 +67,27 @@ export default function NewsHeader({
   if (user?.id && likes) {
     contains = likes?.includes(user?.id);
   }
+
+  async function toggleFavorite() {
+    const response = await putSavedNews(id);
+    if (!response.ok) {
+      toast({
+        variant: 'destructive',
+        title: 'oh não! Erro ao favoritar noticia',
+        description: response.error,
+      });
+      return;
+    }
+    if (response.ok) {
+      setIsFavorite(!isFavorite);
+    }
+  }
+
+  React.useEffect(() => {
+    if (user && user.savedNews && user.savedNews.includes(id)) {
+      setIsFavorite(true);
+    }
+  }, [id, user]);
 
   return (
     <div className="flex flex-col gap-4 sm:flex-row lg:items-center">
@@ -138,15 +161,32 @@ export default function NewsHeader({
             />
           </p>
 
-          <p className="flex items-center gap-2 font-bold text-xl text-slate-600">
-            favoritar
-            <Image
-              src={'/assets/icons/favorite.svg'}
-              width={24}
-              height={24}
-              alt={'Icone de favoritar'}
-            />
-          </p>
+          <button
+            onClick={toggleFavorite}
+            className="flex items-center gap-2 font-bold text-xl text-slate-600"
+          >
+            {isFavorite ? (
+              <>
+                desfavoritar
+                <Image
+                  src={'/assets/icons/unfavorite.svg'}
+                  width={24}
+                  height={24}
+                  alt={'Icone de desfavoritar'}
+                />
+              </>
+            ) : (
+              <>
+                favoritar
+                <Image
+                  src={'/assets/icons/favorite.svg'}
+                  width={24}
+                  height={24}
+                  alt={'Icone de favoritar'}
+                />
+              </>
+            )}
+          </button>
         </div>
       </div>
     </div>

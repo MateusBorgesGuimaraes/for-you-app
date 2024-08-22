@@ -13,6 +13,12 @@ import { useUserStore } from '@/store/user';
 import logout from '@/actions/user-logout';
 import React from 'react';
 import getUser from '@/actions/get-user';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 
 export default function Header() {
   const { user, clearUser, setUser } = useUserStore();
@@ -91,14 +97,82 @@ export default function Header() {
                 </SheetDescription>
                 <ul className="flex flex-col gap-4 text-base font-bold h-full justify-center text-slate-800">
                   <li className="border-b-2 px-2 py-1 ">
-                    <Link className="hover:text-slate-600" href={'/'}>
+                    <Link
+                      className="hover:text-slate-600"
+                      href={'/categories/all'}
+                    >
                       todas as noticias
                     </Link>
                   </li>
                   <li className="border-b-2 px-2 py-1 ">
-                    <Link className="hover:text-slate-600" href={'/'}>
-                      categorias
-                    </Link>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="hover:text-slate-600">
+                          categorias
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuLabel hidden>
+                          todas as categorias
+                        </DropdownMenuLabel>
+                        <div className="flex flex-col gap-2 w-52 p-4">
+                          <Link
+                            className="hover:bg-slate-100 duration-300 flex p-1 rounded-sm"
+                            href={'/categories/cultura'}
+                          >
+                            cultura
+                          </Link>
+                          <Link
+                            className="hover:bg-slate-100 duration-300 flex p-1 rounded-sm"
+                            href={'/categories/moda'}
+                          >
+                            moda
+                          </Link>
+                          <Link
+                            className="hover:bg-slate-100 duration-300 flex p-1 rounded-sm"
+                            href={'/categories/esporte'}
+                          >
+                            esporte
+                          </Link>
+                          <Link
+                            className="hover:bg-slate-100 duration-300 flex p-1 rounded-sm"
+                            href={'/categories/arte'}
+                          >
+                            arte
+                          </Link>
+                          <Link
+                            className="hover:bg-slate-100 duration-300 flex p-1 rounded-sm"
+                            href={'/categories/politica'}
+                          >
+                            politica
+                          </Link>
+                          <Link
+                            className="hover:bg-slate-100 duration-300 flex p-1 rounded-sm"
+                            href={'/categories/natureza'}
+                          >
+                            natureza
+                          </Link>
+                          <Link
+                            className="bg-slate-50 flex p-1 rounded-sm"
+                            href={'/categories/saude'}
+                          >
+                            saude
+                          </Link>
+                          <Link
+                            className="bg-slate-50 flex p-1 rounded-sm"
+                            href={'/categories/ciencia'}
+                          >
+                            ciencia
+                          </Link>
+                          <Link
+                            className="bg-slate-50 flex p-1 rounded-sm"
+                            href={'/categories/entretenimento'}
+                          >
+                            entretenimento
+                          </Link>
+                        </div>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </li>
                   <li className="border-b-2 px-2 py-1 ">
                     <Link className="hover:text-slate-600" href={'/'}>

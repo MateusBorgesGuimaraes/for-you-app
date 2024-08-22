@@ -11,6 +11,7 @@ export default async function getCustoms() {
       next: {
         revalidate: 60,
       },
+      cache: 'no-store',
     });
     if (!response.ok) throw new Error('erro ao carregar noticias');
     const data = (await response.json()) as CustomsHome;

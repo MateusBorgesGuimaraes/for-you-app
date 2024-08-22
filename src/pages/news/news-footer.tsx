@@ -35,7 +35,10 @@ export default function NewsFooter({ comments, newsId }: NewsFooterProps) {
             <CommentComponent.Content>
               {comment.content}
             </CommentComponent.Content>
-            <CommentComponent.Like likes={comment.likes.length} />
+            <CommentComponent.Like
+              likesComment={comment.likes}
+              commentId={comment.id}
+            />
           </CommentComponent>
         ))}
       </div>
