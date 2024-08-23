@@ -22,7 +22,7 @@ export default function RegisterForm() {
 
   async function registerUser(data: any) {
     const response = await postUser(data);
-    // console.log(data);
+
     if (!response.ok) {
       toast({
         variant: 'destructive',

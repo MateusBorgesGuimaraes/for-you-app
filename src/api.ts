@@ -84,8 +84,26 @@ export function GET_SAVED_NEWS() {
   };
 }
 
-// export function REMOVE_SAVED_NEWS(id: string) {
-//   return {
-//     url: API_URL + 'user/' + id + '/remove',
-//   };
-// }
+export function GET_REDATOR_NEWS(id: string) {
+  return {
+    url: API_URL + 'news/user/' + id,
+  };
+}
+
+export function POST_NEWS() {
+  return {
+    url: API_URL + 'news',
+  };
+}
+
+export function DELETE_NEWS(id: string) {
+  return {
+    url: API_URL + 'news/' + id,
+  };
+}
+
+export function PUT_NEWS(id: string) {
+  return {
+    url: API_URL + 'news/' + id,
+  };
+}

@@ -185,6 +185,14 @@ export default function Header() {
                     </Link>
                   </li>
 
+                  {user?.isAdmin && (
+                    <li className="border-b-2 px-2 py-1 ">
+                      <Link className="hover:text-slate-600" href={'/mynews'}>
+                        redator
+                      </Link>
+                    </li>
+                  )}
+
                   {user ? (
                     <li className="border-b-2 px-2 py-1 ">
                       <Link

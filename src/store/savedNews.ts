@@ -4,6 +4,7 @@ import { create } from 'zustand';
 type SavedNewsStore = {
   savedNews: SavedNews[] | null;
   isDeleting: boolean;
+  clearSavedNews: () => void;
   deleteSavedNews: (id: string) => void;
   setIsDeleting: (isDeleting: boolean) => void;
   setSavedNews: (savedNews: SavedNews[] | null) => void;
@@ -12,6 +13,7 @@ type SavedNewsStore = {
 export const useSavedNewsStore = create<SavedNewsStore>((set) => ({
   savedNews: null,
   isDeleting: false,
+  clearSavedNews: () => set({ savedNews: null }),
   deleteSavedNews: (id: string) =>
     set((state) => ({
       savedNews: state.savedNews
