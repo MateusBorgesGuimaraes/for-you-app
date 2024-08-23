@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 
 export default async function putSavedNews(id: string) {
   const token = cookies().get('token')?.value;
-  if (!id || !token) return { data: 'erro', ok: true, error: 'dados faltando' };
+  if (!id || !token) return { data: null, ok: true, error: 'dados faltando' };
   try {
     const { url } = PUT_SAVED_NEWS(id);
     const reponse = await fetch(url, {

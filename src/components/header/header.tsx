@@ -175,7 +175,7 @@ export default function Header() {
                     </DropdownMenu>
                   </li>
                   <li className="border-b-2 px-2 py-1 ">
-                    <Link className="hover:text-slate-600" href={'/'}>
+                    <Link className="hover:text-slate-600" href={'/saved'}>
                       noticias salvas
                     </Link>
                   </li>

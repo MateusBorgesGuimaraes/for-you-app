@@ -77,3 +77,15 @@ export function GET_ALL_NEWS() {
     url: API_URL + 'news/category',
   };
 }
+
+export function GET_SAVED_NEWS() {
+  return {
+    url: API_URL + 'user/saved',
+  };
+}
+
+// export function REMOVE_SAVED_NEWS(id: string) {
+//   return {
+//     url: API_URL + 'user/' + id + '/remove',
+//   };
+// }

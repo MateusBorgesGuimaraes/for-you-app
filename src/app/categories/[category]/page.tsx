@@ -1,5 +1,4 @@
 import CategoriesPage from '@/pages/categories/categories-page';
-// TODO AMANHA? concertar o probelma de desfavoritar
 export type CaregoryParams = {
   params: {
     category: string;

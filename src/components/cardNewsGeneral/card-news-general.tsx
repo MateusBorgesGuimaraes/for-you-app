@@ -1,8 +1,9 @@
 import CardNewsGeneralImage from './card-news-general-image';
 import CardNewsGeneralFooter from './card-news-general-footer';
 import CardNewsGeneralTitle from './card-news-general-title';
-import CardNewsGeneralButtons from './card-news-general.buttons';
+import CardNewsGeneralButtons from './card-news-general-buttons';
 import CardNewsGeneralHeader from './card-news-general-header';
+import CardNewsGeneralButton from './card-news-general-button';
 
 export default function CardNewsGeneral({
   children,
@@ -17,3 +18,4 @@ CardNewsGeneral.Header = CardNewsGeneralHeader;
 CardNewsGeneral.Footer = CardNewsGeneralFooter;
 CardNewsGeneral.Title = CardNewsGeneralTitle;
 CardNewsGeneral.Buttons = CardNewsGeneralButtons;
+CardNewsGeneral.Button = CardNewsGeneralButton;

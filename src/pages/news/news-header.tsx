@@ -81,6 +81,18 @@ export default function NewsHeader({
     if (response.ok) {
       setIsFavorite(!isFavorite);
     }
+    if (user && user.savedNews) {
+      const updatedSavedNews = isFavorite
+        ? user.savedNews.filter((newsId) => newsId !== id)
+        : [...(user.savedNews || []), id];
+
+      useUserStore.setState({
+        user: {
+          ...user,
+          savedNews: updatedSavedNews,
+        },
+      });
+    }
   }
 
   React.useEffect(() => {

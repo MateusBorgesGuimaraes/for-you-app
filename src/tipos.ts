@@ -34,6 +34,10 @@ export type News = {
   updatedAt?: Date;
 };
 
+export type SavedNews = Omit<News, 'comments'> & {
+  comments: string[];
+};
+
 export type User = {
   id?: string;
   isAdmin?: boolean;
