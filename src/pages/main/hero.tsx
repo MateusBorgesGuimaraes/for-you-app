@@ -33,7 +33,7 @@ export default function Hero({ news }: HeroProps) {
           </p>
 
           <div>
-            <ButtonLink href="/">REGISTRAR</ButtonLink>
+            <ButtonLink href="/login/register">REGISTRAR</ButtonLink>
           </div>
         </div>
 
@@ -177,6 +177,7 @@ export default function Hero({ news }: HeroProps) {
             alt="trending icon"
           />
         </div>
+
         {lastTreeNews.map((news) => (
           <CardNewsHero key={news.id} url={news.image} newsId={news.id}>
             <CardNewsHero.Header>

@@ -1,7 +1,7 @@
 'use server';
 
-import { GET_ALL_NEWS, GET_NEWS, GET_NEWS_BY_CATEGORY } from '@/api';
-import { Categories, News } from '@/tipos';
+import { GET_ALL_NEWS, GET_NEWS_BY_CATEGORY } from '@/api';
+import { Categories } from '@/tipos';
 
 type GetNewsByCategoriesProps = {
   categories: Categories | 'all';

@@ -2,7 +2,7 @@ import RegisterForm from '@/pages/login/register/register-form';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Register',
+  title: 'Registre-se',
   description: 'Crie sua conta.',
 };
 

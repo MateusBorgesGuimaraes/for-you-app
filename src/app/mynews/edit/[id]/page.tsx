@@ -1,4 +1,10 @@
 import EditNews from '@/pages/mynews/edit-news';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Editar noticias',
+  description: 'Edite a noticia',
+};
 
 export type EditNewsParams = {
   params: {
